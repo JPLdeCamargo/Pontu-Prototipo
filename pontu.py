@@ -3,7 +3,7 @@ class PlayerActor:
     def __init__(self):
         self.__main_window = tk.Tk()
         self.__main_window.title("Pontu!!")
-        self.__main_window.geometry("485x485")
+        self.__main_window.geometry("450x450")
         self.__main_window["bg"] = "red"
         self.__is_crown_turn = True
         self.__main_frame = tk.Frame(self.__main_window,
@@ -28,22 +28,22 @@ class PlayerActor:
             for x in range(9):
                 if x % 2 == 0 and y % 2 == 0:
                     label = tk.Label(self.__main_frame,
-                                     bd=2,
+                                     bd=0,
                                      relief="solid",
                                      image=self.__empty_rock)
                 elif y % 2 == 0:
                     label = tk.Label(self.__main_frame,
-                                     bd=2,
+                                     bd=0,
                                      relief="solid",
                                      image=self.__v_bridge)
                 elif x % 2 == 0:
                     label = tk.Label(self.__main_frame,
-                                     bd=2,
+                                     bd=0,
                                      relief="solid",
                                      image=self.__h_bridge)
                 else:
                     label = tk.Label(self.__main_frame,
-                                     bd=2,
+                                     bd=0,
                                      relief="solid",
                                      image=self.__water)
                 label.grid(row = x, column = y)
