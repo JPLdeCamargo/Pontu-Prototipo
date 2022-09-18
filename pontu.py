@@ -1,6 +1,6 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-class PlayerActor:
+class InterfaceJogador:
     def __init__(self):
         self.__main_window = tk.Tk()
         self.__main_window.title("Pontu!!")
@@ -85,4 +85,4 @@ class PlayerActor:
         img = ImageTk.PhotoImage(img)
         return img
 
-PlayerActor()
+InterfaceJogador()
