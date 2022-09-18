@@ -22,19 +22,19 @@ class PlayerActor:
         self.__message_frame.grid(row=1, column=0)
 
 
-
+        self.__images = {}
         # pyimage1
-        self.__empty_rock = self.resize("images/rock.png")
+        self.__images['rock'] = self.resize("images/rock.png")
         # pyimage2
-        self.__v_bridge = self.resize("images/bridge_v.png")
+        self.__images['bridge_v'] = self.resize("images/bridge_v.png")
         # pyimage3
-        self.__h_bridge = self.resize("images/bridge_h.png")
+        self.__images['bridge_h'] = self.resize("images/bridge_h.png")
         # pyimage4
-        self.__water = self.resize("images/water.png")
+        self.__images['water'] = self.resize("images/water.png")
         # pyimage5
-        self.__skull_rock = self.resize("images/skull_rock.png")
+        self.__images['skull_rock'] = self.resize("images/skull_rock.png")
         # pyimage6
-        self.__crown_rock = self.resize("images/crown_rock.png")
+        self.__images['crown_rock'] = self.resize("images/crown_rock.png")
 
         self.__board_view = []
         for y in range(9):
@@ -43,13 +43,13 @@ class PlayerActor:
                 img = None
                 msg = ''
                 if x % 2 == 0 and y % 2 == 0:
-                    img = self.__empty_rock 
+                    img = self.__images['rock']
                 elif y % 2 == 0:
-                    img = self.__v_bridge
+                    img = self.__images['bridge_v']
                 elif x % 2 == 0:
-                    img = self.__h_bridge
+                    img = self.__images['bridge_h']
                 else:
-                    img = self.__water 
+                    img = self.__images['water']
                 label = tk.Label(self.__main_frame,
                                  bd=0,
                                  relief="solid",
@@ -67,10 +67,10 @@ class PlayerActor:
         label=self.__board_view[linha-1][coluna-1]
         msg = "action not available"
         if label['imag'] == "pyimage2" or label['imag'] == "pyimage3":
-            label['imag'] = self.__water
+            label['imag'] = self.__images['water']
             msg = "bridge selected"
         if label['imag'] == "pyimage1":
-            replace = self.__crown_rock if self.__is_crown_turn else self.__skull_rock
+            replace = self.__images['crown_rock'] if self.__is_crown_turn else self.__images['skull_rock']
             label['imag'] = replace
             self.__is_crown_turn = not self.__is_crown_turn
             msg = "rock selected"
