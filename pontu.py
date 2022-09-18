@@ -4,10 +4,11 @@ class InterfaceJogador:
     def __init__(self):
         self.__main_window = tk.Tk()
         self.__main_window.title("Pontu!!")
-        self.__size = 2
+        self.__size = 1
         self.__main_window.geometry(f"{450*self.__size}x{450*self.__size + 20}")
         self.__main_window["bg"] = "white"
         self.__is_crown_turn = True
+        self.__main_window.resizable(False, False)
         self.__main_frame = tk.Frame(self.__main_window,
                                      bg="red")
         self.__message_frame = tk.Frame(self.__main_window,
