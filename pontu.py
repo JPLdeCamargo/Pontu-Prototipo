@@ -5,11 +5,23 @@ class PlayerActor:
         self.__main_window = tk.Tk()
         self.__main_window.title("Pontu!!")
         self.__size = 2
-        self.__main_window.geometry(f"{450*self.__size}x{450*self.__size}")
-        self.__main_window["bg"] = "red"
+        self.__main_window.geometry(f"{450*self.__size}x{450*self.__size + 20}")
+        self.__main_window["bg"] = "white"
         self.__is_crown_turn = True
         self.__main_frame = tk.Frame(self.__main_window,
                                      bg="red")
+        self.__message_frame = tk.Frame(self.__main_window,
+                                        bg="white")
+        self.__message_label = tk.Label(self.__message_frame,
+                                        bg="white",
+                                        text="Bem Vindo a Pontu!!",
+                                        font="arial 14")
+        self.__message_label.grid(row=0,
+                                  column=0,
+                                  columnspan=9)
+        self.__message_frame.grid(row=1, column=0)
+
+
 
         # pyimage1
         self.__empty_rock = self.resize("images/rock.png")
@@ -29,6 +41,7 @@ class PlayerActor:
             line = []
             for x in range(9):
                 img = None
+                msg = ''
                 if x % 2 == 0 and y % 2 == 0:
                     img = self.__empty_rock 
                 elif y % 2 == 0:
@@ -52,12 +65,19 @@ class PlayerActor:
     
     def click(self, event, linha, coluna):
         label=self.__board_view[linha-1][coluna-1]
+        msg = "action not available"
         if label['imag'] == "pyimage2" or label['imag'] == "pyimage3":
             label['imag'] = self.__water
+            msg = "bridge selected"
         if label['imag'] == "pyimage1":
             replace = self.__crown_rock if self.__is_crown_turn else self.__skull_rock
             label['imag'] = replace
             self.__is_crown_turn = not self.__is_crown_turn
+            msg = "rock selected"
+
+        
+        self.__message_label.config(text=msg)
+            
 
     def resize(self, file_path:str):
         img = Image.open(file_path)
